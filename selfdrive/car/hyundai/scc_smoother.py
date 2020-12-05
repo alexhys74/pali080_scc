@@ -161,10 +161,9 @@ class SccSmoother:
     else:
       self.target_speed = clu11_speed + accel
 
+    self.cal_max_speed(frame, CC, CS, controls.sm, clu11_speed)
     self.target_speed = clip(self.target_speed, MIN_SET_SPEED, self.max_set_speed)
     
-    self.cal_max_speed(frame, CC, CS, controls.sm, clu11_speed)
-
     CC.sccSmoother.logMessage = '{:.2f}/{:.2f}, {:.2f}, {:.1f}/{:d}, btn:{:d}' \
       .format(float(apply_accel * CV.MS_TO_KPH), float(override_acc), float(accel), float(self.target_speed),
               int(self.curve_speed), int(self.btn))
