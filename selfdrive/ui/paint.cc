@@ -316,7 +316,7 @@ static void ui_draw_tpms(UIState *s) {
   char tpmsRr[32];
   int viz_tpms_w = 250;
   int viz_tpms_h = 160;
-  int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 910;
+  int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 750;  // 값이 높을수록 좌측으로
   int viz_tpms_y = s->scene.viz_rect.y + (bdr_s*1.5);
   float maxv = 0;
   float minv = 300;
@@ -399,7 +399,7 @@ static void ui_draw_debug(UIState *s)
   UIScene &scene = s->scene;
 
   int ui_viz_rx = scene.viz_rect.x + 300;
-  int ui_viz_ry = 208;
+  int ui_viz_ry = 258;  // 값이 높을수록 아래로
   int ui_viz_rx_center = scene.viz_rect.centerX();
   
   nvgFontSize(s->vg, 70);
@@ -778,25 +778,25 @@ static void bb_ui_draw_debug(UIState *s)
     const int text_x = x + (xo / 2) + (w / 2);
 
     int model = 0;
-    snprintf(str, sizeof(str), "D: %.1f, relVel: %.1f, prob: %.1f", scene->model_lead_data[model].getDist(),
-                                            scene->model_lead_data[model].getRelVel(),
-                                            scene->model_lead_data[model].getProb());
+    // snprintf(str, sizeof(str), "D: %.1f, relVel: %.1f, prob: %.1f", scene->model_lead_data[model].getDist(),
+    //                                        scene->model_lead_data[model].getRelVel(),
+    //                                        scene->model_lead_data[model].getProb());
 
-    ui_draw_text(s->vg, text_x, y, str, 20 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+    // ui_draw_text(s->vg, text_x, y, str, 20 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
 
     y += height;
     model = 0;
-    snprintf(str, sizeof(str), "D: %.1f, relVel: %.1f, prob: %.1f", scene->model_lead_data[model].getDist(),
-                                            scene->model_lead_data[model].getRelVel(),
-                                            scene->model_lead_data[model].getProb());
+    // snprintf(str, sizeof(str), "D: %.1f, relVel: %.1f, prob: %.1f", scene->model_lead_data[model].getDist(),
+    //                                        scene->model_lead_data[model].getRelVel(),
+    //                                        scene->model_lead_data[model].getProb());
 
-    ui_draw_text(s->vg, text_x, y, str, 20 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+    // ui_draw_text(s->vg, text_x, y, str, 20 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
     y += height;
-    snprintf(str, sizeof(str), "%s", std::string(scc_smoother.getLogMessage()).c_str());
+    // snprintf(str, sizeof(str), "%s", std::string(scc_smoother.getLogMessage()).c_str());
 
-    ui_draw_text(s->vg, text_x, y, str, 20 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+    // ui_draw_text(s->vg, text_x, y, str, 20 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 #endif
 
 }
