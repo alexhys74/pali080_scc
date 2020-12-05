@@ -316,7 +316,7 @@ static void ui_draw_tpms(UIState *s) {
   char tpmsRr[32];
   int viz_tpms_w = 250;
   int viz_tpms_h = 160;
-  int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 430;
+  int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 910;
   int viz_tpms_y = s->scene.viz_rect.y + (bdr_s*1.5);
   float maxv = 0;
   float minv = 300;
@@ -399,7 +399,7 @@ static void ui_draw_debug(UIState *s)
   UIScene &scene = s->scene;
 
   int ui_viz_rx = scene.viz_rect.x + 300;
-  int ui_viz_ry = 15;
+  int ui_viz_ry = 208;
   int ui_viz_rx_center = scene.viz_rect.centerX();
   
   nvgFontSize(s->vg, 70);
