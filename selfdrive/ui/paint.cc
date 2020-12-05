@@ -316,7 +316,7 @@ static void ui_draw_tpms(UIState *s) {
   char tpmsRr[32];
   int viz_tpms_w = 250;
   int viz_tpms_h = 160;
-  int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 1500;  // 값이 높을수록 좌측으로
+  int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 1530;  // 값이 높을수록 좌측으로
   int viz_tpms_y = s->scene.viz_rect.y + (bdr_s*1.5);
   float maxv = 0;
   float minv = 300;
@@ -359,7 +359,7 @@ static void ui_draw_tpms(UIState *s) {
 
   nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_BASELINE);
   const int pos_x = viz_tpms_x + (viz_tpms_w / 2);
-  ui_draw_text(s->vg, pos_x, 120, "TPMS", 70, COLOR_ORANGE_ALPHA(200), s->font_sans_bold);
+  ui_draw_text(s->vg, pos_x, 120, "TPMS", 70, COLOR_WHITE_ALPHA(270), s->font_sans_bold);
   snprintf(tpmsFl, sizeof(tpmsFl), "%.1f", s->scene.tpmsPressureFl);
   snprintf(tpmsFr, sizeof(tpmsFr), "%.1f", s->scene.tpmsPressureFr);
   snprintf(tpmsRl, sizeof(tpmsRl), "%.1f", s->scene.tpmsPressureRl);
@@ -367,30 +367,30 @@ static void ui_draw_tpms(UIState *s) {
   if (s->scene.tpmsPressureFl < 34) {
     ui_draw_text(s->vg, pos_x-55, 170, tpmsFl, 80, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureFl > 50) {
-    ui_draw_text(s->vg, pos_x-55, 170, "N/A", 80, COLOR_ORANGE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x-55, 170, "N/A", 80, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   } else {
-    ui_draw_text(s->vg, pos_x-55, 170, tpmsFl, 80, COLOR_ORANGE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x-55, 170, tpmsFl, 80, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   }
   if (s->scene.tpmsPressureFr < 34) {
     ui_draw_text(s->vg, pos_x+55, 170, tpmsFr, 80, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureFr > 50) {
-    ui_draw_text(s->vg, pos_x+55, 170, "N/A", 80, COLOR_ORANGE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+55, 170, "N/A", 80, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   } else {
-    ui_draw_text(s->vg, pos_x+55, 170, tpmsFr, 80, COLOR_ORANGE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+55, 170, tpmsFr, 80, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   }
   if (s->scene.tpmsPressureRl < 34) {
     ui_draw_text(s->vg, pos_x-55, 220, tpmsRl, 80, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureRl > 50) {
-    ui_draw_text(s->vg, pos_x-55, 220, "N/A", 80, COLOR_ORANGE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x-55, 220, "N/A", 80, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   } else {
-    ui_draw_text(s->vg, pos_x-55, 220, tpmsRl, 80, COLOR_ORANGE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x-55, 220, tpmsRl, 80, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   }
   if (s->scene.tpmsPressureRr < 34) {
     ui_draw_text(s->vg, pos_x+55, 220, tpmsRr, 80, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureRr > 50) {
-    ui_draw_text(s->vg, pos_x+55, 220, "N/A", 80, COLOR_ORANGE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+55, 220, "N/A", 80, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   } else {
-    ui_draw_text(s->vg, pos_x+55, 220, tpmsRr, 80, COLOR_ORANGE_ALPHA(200), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+55, 220, tpmsRr, 80, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   }
 }
 
