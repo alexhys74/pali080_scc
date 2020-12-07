@@ -314,7 +314,7 @@ static void ui_draw_tpms(UIState *s) {
   char tpmsFr[32];
   char tpmsRl[32];
   char tpmsRr[32];
-  int viz_tpms_w = 250;
+  int viz_tpms_w = 270;
   int viz_tpms_h = 160;
   int viz_tpms_x = s->scene.viz_rect.x + s->scene.viz_rect.w - 1530;  // 값이 높을수록 좌측으로
   int viz_tpms_y = s->scene.viz_rect.y + (bdr_s*1.5);
