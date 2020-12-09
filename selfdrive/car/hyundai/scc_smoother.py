@@ -11,7 +11,7 @@ from selfdrive.controls.lib.drive_helpers import V_CRUISE_MAX, V_CRUISE_MIN, V_C
 from selfdrive.road_speed_limiter import road_speed_limiter_get_max_speed
 
 # do not modify
-MIN_SET_SPEED = V_CRUISE_MIN 
+MIN_SET_SPEED = V_CRUISE_MIN
 MAX_SET_SPEED = V_CRUISE_MAX
 
 ALIVE_COUNT_MIN = 6
@@ -67,7 +67,7 @@ class SccSmoother:
     self.slow_on_curves = Params().get('SccSmootherSlowOnCurves') == b'1'
 
     self.sync_set_speed_while_gas_pressed = True
-  
+
   def reset(self):
     self.accel_buf = []
     self.max_set_speed_buf = []
@@ -164,7 +164,7 @@ class SccSmoother:
 
     self.cal_max_speed(frame, CC, CS, controls.sm, clu11_speed)
     self.target_speed = clip(self.target_speed, MIN_SET_SPEED, self.max_set_speed)
-    
+
     CC.sccSmoother.logMessage = '{:.2f}/{:.2f}, {:.2f}, {:.1f}/{:d}, btn:{:d}' \
       .format(float(apply_accel * CV.MS_TO_KPH), float(override_acc), float(accel), float(self.target_speed),
               int(self.curve_speed), int(self.btn))
@@ -247,18 +247,22 @@ class SccSmoother:
 
       d = lead.dRel - 5.
 
-      if 0. < d < -lead.vRel * (9. + cruise_gap) * 2. and lead.vRel < -1.:
-        t = d / lead.vRel
+      if 0. < d < -lead.vRel * (7.7 + cruise_gap) * 2. and lead.vRel < -1.:  #여기서 부터 254라인까지 선행차가 있을 때 감속 로직, 내용이 있으나 고치면 생각보다 처음부터 해야할게 많아서 안건드리는게 낫다
+        t = d / lead.vRel * 0.98
         acc = -(lead.vRel / t) * CV.MS_TO_KPH * 1.8
         override_acc = acc
         accel = (op_accel + acc) / 2.
-      else:
-        accel = op_accel
-
-    if accel > 0.:
-      accel *= self.accel_gain * interp(clu11_speed, [30., 100.], [1.5, 1.25])
+      else:                #여기서 부터 선행차가 있을 때 가속 로직.        
+        accel = op_accel * interp(clu11_speed, [0., 25., 50., 51., 60., 100.], [2.4, 2.9, 1.7, 1.65, 1.4, 1.0])    #보간법 0일 때 엑셀값(가속도) 2.4배 나머지는 각 구간의 보간법
+#        if 35 > lead.dRel > 15:   257부터 261 오류 작동안함.
+#          if clu11_speed < 50:
+#            accel = op_accel * 2.5               
+#        else:
+#          accel = op_accel * interp(clu11_speed, [50., 60., 100.], [1.75, 1.4, 1.0])
+    if accel > 0.:    # 전체 가속로직 선행차가 있을 땐 256라인 가속을 받고 여기서 한번더 가속을 받는다. 선행차가 없을 때는 여기서만 가속을 받는다. 자연스러운 가속은 선행차가 있을 때 가속을 세게해야한다. 
+      accel *= self.accel_gain * interp(clu11_speed, [35., 60., 100.], [1.5, 1.25, 1.2])
     else:
-      accel *= self.decel_gain * 1.8
+      accel *= self.decel_gain * interp(clu11_speed, [70., 75.], [1.79287, 1.8])    #전체 감속로직 보간70킬로까지 감속을 너무 세게 하면 자연스러운 거리 유지가 힘듬.
 
     return clip(accel, -LIMIT_DECEL, LIMIT_ACCEL), override_acc
 
