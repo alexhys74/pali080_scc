@@ -359,11 +359,11 @@ static void ui_draw_tpms(UIState *s) {
 
   nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_BASELINE);
   const int pos_x = viz_tpms_x + (viz_tpms_w / 2);
-  ui_draw_text(s->vg, pos_x, 120, "TPMS", 70, COLOR_WHITE_ALPHA(230), s->font_sans_bold);
+  ui_draw_text(s->vg, pos_x, 120, "   TPMS", 70, COLOR_WHITE_ALPHA(230), s->font_sans_bold);
   snprintf(tpmsFl, sizeof(tpmsFl), "%.1f", s->scene.tpmsPressureFl);
-  snprintf(tpmsFr, sizeof(tpmsFr), " %.1f", s->scene.tpmsPressureFr);
+  snprintf(tpmsFr, sizeof(tpmsFr), "   %.1f", s->scene.tpmsPressureFr);
   snprintf(tpmsRl, sizeof(tpmsRl), "%.1f", s->scene.tpmsPressureRl);
-  snprintf(tpmsRr, sizeof(tpmsRr), " %.1f", s->scene.tpmsPressureRr);
+  snprintf(tpmsRr, sizeof(tpmsRr), "   %.1f", s->scene.tpmsPressureRr);
   if (s->scene.tpmsPressureFl < 34) {
     ui_draw_text(s->vg, pos_x-55, 170, tpmsFl, 75, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureFl > 50) {
@@ -374,7 +374,7 @@ static void ui_draw_tpms(UIState *s) {
   if (s->scene.tpmsPressureFr < 34) {
     ui_draw_text(s->vg, pos_x+55, 170, tpmsFr, 75, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureFr > 50) {
-    ui_draw_text(s->vg, pos_x+55, 170, " N/A", 75, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+55, 170, "   N/A", 75, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   } else {
     ui_draw_text(s->vg, pos_x+55, 170, tpmsFr, 75, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   }
@@ -388,7 +388,7 @@ static void ui_draw_tpms(UIState *s) {
   if (s->scene.tpmsPressureRr < 34) {
     ui_draw_text(s->vg, pos_x+55, 220, tpmsRr, 75, COLOR_RED, s->font_sans_bold);
   } else if (s->scene.tpmsPressureRr > 50) {
-    ui_draw_text(s->vg, pos_x+55, 220, " N/A", 75, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
+    ui_draw_text(s->vg, pos_x+55, 220, "   N/A", 75, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   } else {
     ui_draw_text(s->vg, pos_x+55, 220, tpmsRr, 75, COLOR_ORANGE_ALPHA(230), s->font_sans_semibold);
   }
